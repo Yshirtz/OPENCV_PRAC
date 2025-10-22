@@ -1,0 +1,25 @@
+import cv2 as cv          # OpenCV 라이브러리를 cv라는 이름으로 가져옴
+import sys                # 시스템 종료 등의 기능을 위한 sys 모듈 가져옴
+
+# 이미지 파일 읽기 (상대 경로 기준)
+img = cv.imread('Ch.02/girl.jpg')  
+
+# 이미지가 없는 경우 오류 메시지 출력 후 종료
+if img is None:
+    sys.exit('File Not Found')  # 이미지 파일을 찾을 수 없으면 프로그램 종료
+
+# 이미지에 사각형 그리기 (좌상단 (330,470), 우하단 (530, 640), 파란색, 두께 3)
+cv.rectangle(img, (330, 470), (530, 640), color=(255, 0, 0), thickness=3)
+
+# 이미지에 텍스트 쓰기 ("Hello OpenCV", 위치 (330, 450), 폰트, 크기 1, 초록색, 두께 2)
+cv.putText(img, 'Hello OpenCV', org=(330, 450), fontFace=cv.FONT_HERSHEY_SIMPLEX,
+           fontScale=1, color=(0, 255, 0), thickness=2)
+
+# 이미지 화면에 출력
+cv.imshow('Image Display', img)  # 'Image Display'라는 이름의 창에 이미지 보여주기
+
+# 키 입력 대기
+cv.waitKey()  # 키보드 입력이 있을 때까지 대기
+
+# 열려 있는 모든 OpenCV 창 닫기
+cv.destroyWindow()  # 창 닫기 
